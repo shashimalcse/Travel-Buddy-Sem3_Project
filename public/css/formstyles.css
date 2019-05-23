@@ -1,0 +1,46 @@
+.thumb-image {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+  }
+  
+  
+  img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 50, 186, 0.5);
+  }
+  
+  .image-holder {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 90%;
+  }
+  
+  .wrapper {
+    margin-top: 5%;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-bottom: 5%;
+  
+    border: 1px solid rgb(2, 108, 247);
+    border-radius: 4px;
+    padding: 2%;
+  }
+  
+  .wrap {
+    margin-left: 26%;
+    margin-right: 26%;
+    margin-bottom: 50%;
+    border: 1px solid rgb(41, 207, 25);
+    border-radius: 4px;
+  
+  }
+  
+  
+  #vehicleType {
+    width: 25%;
+  }
+  
+  #model {
+    width: 50%;
+  }
