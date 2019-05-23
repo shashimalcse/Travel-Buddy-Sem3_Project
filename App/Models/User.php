@@ -6,6 +6,7 @@ use PDO;
 use \App\Token;
 use \App\Mail;
 use \Core\View;
+use \App\Models\Imformations;
 
 
 /**
@@ -313,6 +314,11 @@ class User extends \Core\Model{
             }
             return false;
 
+
+        }
+        public function addVehical($data,$files){
+
+            return Imformation::addVehical($data,$files,$this->id);
 
         }
 

@@ -50,7 +50,7 @@ class Auth{
     }
     public static function getReturnToPage(){
 
-        return $_SESSION['return_to'] ?? '/php-mvc-master/public/' ;
+        return $_SESSION['return_to'] ?? '/php-mvc-master/public/';
     }
     public static function getUser()
     {
