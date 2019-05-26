@@ -6,6 +6,7 @@
 
 <script src="/php-mvc-master/public/js/hideShowPAssword.min.js"></script>
 <script src="/php-mvc-master/public/js/app.js"></script>
+<link rel="stylesheet" href="/php-mvc-master/public/css/formstyles.css" />
 <script>
 
 $(document).ready(function(){
@@ -55,8 +56,6 @@ $(document).ready(function(){
 
 {% block body %}
 
-    <h1>Profile</h1>
-
     {% if user.errors is not empty %}
         <p>Errors:</p>
         <ul>
@@ -66,6 +65,9 @@ $(document).ready(function(){
         </ul>
         
     {% endif %}
+    <div class="wrapper">
+
+            <h1 style="text-align: center;">Edit Profile</h1>
 
     <form method="post" id="formProfile" action="/php-mvc-master/public/profile/update">
 
@@ -84,10 +86,12 @@ $(document).ready(function(){
             <input type="password" id="inputPassword" name="password" placeholder="Password"  aria-describedby="helpBlock" class="form-control" />
             <span id="helpBlock">Leave blanl to keep current password.</span>
         </div>
-
+        
         <button type="submit" class="btn btn-primary">Save</button>
+        
         <a href="/php-mvc-master/public/profile/show">Cancel</a>
 
     </form>
+    </div>
 
 {% endblock %}

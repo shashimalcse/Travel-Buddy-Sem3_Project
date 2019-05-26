@@ -19,7 +19,7 @@ class Mail{
         $mail->SMTPSecure = 'ssl';
         $mail->Host = 'smtp.gmail.com';
         $mail->Port = 465;
-        $mail->SMTPDebug = 1;
+        $mail->SMTPDebug = 0;
         $mail->Username = 'shashimalsenarathz97@gmail.com';
         $mail->Password = '1234Shashi@';
         $mail->SMTPAuth = true;

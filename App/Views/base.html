@@ -1,57 +1,82 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/php-mvc-master/public/css/styles.css" />
+  <meta charset="UTF-8">
+  <title>{% block title %}{% endblock %}</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/php-mvc-master/public/css/styles.css" />
+  <link rel="icon" sizes="256x256" href="/php-mvc-master/public/resource/logo2.png">
+  <style>
+      .navbar-custom {
+        background-color: #222222;
+    }
+  </style>
+
+
 
 </head>
+
 <body>
   <div class="container">
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark navbar-custom p-0">
+      <!-- Brand -->
+      <a class="navbar-brand" href="#"><img src="/php-mvc-master/public/resource/logo.jpg" style="width:150px;"></a>
 
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="/php-mvc-master/public/">Home</a></li>
-          </ul>    
-         {% if current_user %}
-         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/php-mvc-master/public/profile/show">Profile</a></li>
-            <li><a href="/php-mvc-master/public/logout">Logout</a></li>
-         </ul>  
-            {% else %}
-                            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/php-mvc-master/public/signup/new"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
-                <li><a href="/php-mvc-master/public/login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-                                </ul>
-     
-         {% endif %}
-      
-    </div>
+      <!-- Links -->
+      <ul class="navbar-nav ml-auto">
 
+        {% if current_user %}
+        <li class="nav-item">
+          <a class="nav-link" href="/php-mvc-master/public/mapquest/load">Map</a>
+
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/php-mvc-master/public/profile/show">{{ current_user.name }}</a>
+
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/php-mvc-master/public/logout">Logout</a>
+
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/php-mvc-master/public/">Home</a>
+
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/php-mvc-master/public/signup/new"><span class="fas fa-user"></span>Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/php-mvc-master/public/login"><span class="fas fa-sign-in-alt"></span>Login</a>
+        </li>
+        {% endif %}
+      </ul>
     </nav>
+  </div>
 
-    {% for massage in flash_messages %}
-      <div class="alert alert-{{ massage.type }}">
-        {{ massage.body }}
-      </div>
-    {% endfor %}
+  {% for massage in flash_messages %}
+  <div class="alert alert-{{ massage.type }}">
+    {{ massage.body }}
+  </div>
+  {% endfor %}
 
 
-    {% block body %}
-    {% endblock %}
+  {% block body %}
+  {% endblock %}
 
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
 
   {% block footer %}
   {% endblock %}
-</div>
+  </div>
 </body>
+
 </html>

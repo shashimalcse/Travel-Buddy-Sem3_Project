@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block footer %}
+
+<link rel="stylesheet" href="/php-mvc-master/public/css/formstyles.css" />
+
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="wrapper">
+
+            <h1 style="text-align: center;">Business</h1>
+
+    {% if uservehicalinfo is not empty %}
+    <p>Vehicals:</p>
+    <ul>
+        {% for business in uservehicalinfo %}
+            <dl>
+                <dt>{{ business.vehical_type }} {{ business.vehical_model }} <a href=vehical-del/{{ business.id}}>Remove</a>        <a href=vehical-edit/{{ business.id}}>Edit</a></dt>
+                
+            </dl>
+            
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if userhotelinfo is not empty %}
+    <p>Hotels:</p>
+    <ul>
+        {% for business in userhotelinfo %}
+            <dl>
+                <dt>{{ business.name }}  <a href=hotel-del/{{ business.id}}>Remove</a>        <a href=hotel-edit/{{ business.id}}>Edit</a></dt>
+                
+            </dl>
+            
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if usershopinfo is not empty %}
+    <p>Shops:</p>
+    <ul>
+        {% for business in usershopinfo %}
+            <dl>
+                <dt>{{ business.shop_type }} {{ business.name}}  <a href=shop-del/{{ business.id}}>Remove</a>        <a href=shop-edit/{{ business.id}}>Edit</a></dt>
+                
+            </dl>
+            
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if userguiderinfo is not empty %}
+    <p>Guide:</p>
+    <ul>
+        {% for business in userguiderinfo %}
+            <dl>
+                <dt>{{ business.days }}  <a href=guider-del/{{ business.id}}>Remove</a>        <a href=guider-edit/{{ business.id}}>Edit</a></dt>
+                
+            </dl>
+            
+        {% endfor %}
+    </ul>
+
+    </div>
+    
+{% endif %}
+
+    
+
+{% endblock %}

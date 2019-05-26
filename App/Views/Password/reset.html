@@ -6,26 +6,27 @@
 
 <script src="/php-mvc-master/public/js/hideShowPAssword.min.js"></script>
 <script src="/php-mvc-master/public/js/app.js"></script>
+<link rel="stylesheet" href="/php-mvc-master/public/css/formstyles.css">
 <script>
 
-$(document).ready(function(){
-    $('#formPassword').validate({
-        rules:{
-            password: {
-                required: true,
-                minlength: 8,
-                validPassword: true
+    $(document).ready(function () {
+        $('#formPassword').validate({
+            rules: {
+                password: {
+                    required: true,
+                    minlength: 8,
+                    validPassword: true
+                }
+
             }
+        });
 
-        }
+
+        $('#inputPassword').hideShowPassword({
+            show: false,
+            innerToggle: 'focus'
+        });
     });
-
-
-    $('#inputPassword').hideShowPassword({
-        show:false,
-        innerToggle: 'focus'
-    });
-});
 
 </script>
 
@@ -33,28 +34,32 @@ $(document).ready(function(){
 
 {% block body %}
 
-    <h1>Reset Password</h1>
 
-    {% if user.errors is not empty %}
-        <p>Errors:</p>
-        <ul>
-            {% for error in user.errors %}
-                <li>{{ error }}</li>
-            {% endfor %}
-        </ul>
-        
-    {% endif %}
 
-    <form method="post"  id="formPassword" action="/php-mvc-master/public/password/reset-password">
+{% if user.errors is not empty %}
+<p>Errors:</p>
+<ul>
+    {% for error in user.errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+</ul>
+
+{% endif %}
+<div class="wrapper">
+    <h1 style="text-align: center;">>Reset Password</h1>
+    <form method="post" id="formPassword" action="/php-mvc-master/public/password/reset-password">
 
         <input type="hidden" name="token" value="{{ token }}" />
         <div class="form-group">
             <label for="inputPassword">Password</label>
-            <input type="password" id="inputPassword" name="password" placeholder="Password" required class="form-control"/>
+            <input type="password" id="inputPassword" name="password" placeholder="Password" required
+                class="form-control" />
         </div>
 
         <button type="submit" class="btn btn-primary">Reset Password</button>
 
+
     </form>
+</div>
 
 {% endblock %}

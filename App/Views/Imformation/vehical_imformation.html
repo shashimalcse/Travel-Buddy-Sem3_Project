@@ -33,22 +33,22 @@
 
 {% block body %}
 
-    <h1>Guide</h1>
-
     <div class="wrapper">
+
+            <h1 style="text-align: center;">Add Vehicle</h1>
 
             <form method="post" enctype="multipart/form-data"  action="/php-mvc-master/public/imformation/add-vehical" id="formVehical">
                 <div class="form-group">
                         <label for="model">Full Name : </label>
-                        <input type="text" class="form-control" name="fullname" id="fullname" autofocus required value="{{ fullname }}">
+                        <input type="text" class="form-control" name="name" id="fullname" autofocus required >
                     </div>
                 <div class="form-group">
                             <label for="model">Address : </label>
-                            <input type="text" class="form-control" name="address" id="address" required value="{{ address }}">
+                            <input type="text" class="form-control" name="address" id="address" required >
                 </div>    
                 <div class="form-group">
                         <label for="model">Telephone Number : </label>
-                        <input type="tel" class="form-control" name="telephone" id="telephone" required value="{{ telephone }}">
+                        <input type="tel" class="form-control" name="telephone" id="telephone" required >
                     </div>
     
                 <div class="form-group">
@@ -79,7 +79,7 @@
                 <div class="form-group">
                     <label for="vehicleDetails">More Details: </label>
                     <br>
-                    <textarea name="vehicaldetails" class="form-control" id="vehicleDetails" maxlength="1000"
+                    <textarea name="detail" class="form-control" id="vehicleDetails" maxlength="1000"
                         placeholder="Do not exceed more than 1000 characters"></textarea>
                     <br>
                 </div>
@@ -122,9 +122,9 @@
                     </div>
 
                 </div>
-    
+                
                 <button type="submit" class="btn btn-primary">Save</button>
-    
+                
             </form>
         </div>
         <script async defer

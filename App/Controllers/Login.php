@@ -22,10 +22,10 @@ class Login extends \Core\Controller{
 
             Auth::login($user,$remember_me);
 
-            Flash::addMessage('Login successful');
             
-            //$this->redirect('/php-mvc-master/public/');
-            $this->redirect(Auth::getReturnToPage());
+            
+            $this->redirect('/php-mvc-master/public/mapquest/load');
+            //$this->redirect(Auth::getReturnToPage());
             
         }
         else{
@@ -44,7 +44,7 @@ class Login extends \Core\Controller{
     }
     public function showLogoutMessageAction(){
 
-        Flash::addMessage('Logout successful');
+        
 
         $this->redirect('/php-mvc-master/public/');
 

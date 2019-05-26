@@ -2,14 +2,79 @@
 
 {% block title %}Home{% endblock %}
 
+{% block footer %}
+
+<link rel="stylesheet" href="/php-mvc-master/public/css/circlehover.css" />
+
+<link rel="stylesheet" href="/php-mvc-master/public/css/mapbutton.css" />
+
+
+<script>
+    var text1 = document.getElementById('text1');
+    var text2 = document.getElementById('text2');
+    var newDom = '';
+    var animationDelay = 6;
+    function effect(text, newDom, animationDelay) {
+        for (let i = 0; i < text.innerText.length; i++) {
+            newDom += '<span class="char">' + (text.innerText[i] == ' ' ? '&nbsp;' : text.innerText[i]) + '</span>';
+        }
+
+        text.innerHTML = newDom;
+        var length = text.children.length;
+
+        for (let i = 0; i < length; i++) {
+            text.children[i].style['animation-delay'] = animationDelay * i + 'ms';
+        }
+    }
+    effect(text1, newDom, animationDelay);
+    effect(text2, newDom, 20);
+</script>
+
+{% endblock %}
+
+
 {% block body %}
 
-    <h1>Welcome</h1>
 
-    {% if current_user %}
 
-        Hello {{ current_user.name }} Welcome.
 
-    {% endif %}
+{% if current_user %}
+
+
+{% else %}
+
+
+<div class="circle-multiple" style="float:right;">
+
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle">
+        <img src="/php-mvc-master/public/resource/logo1.png" style="width:700px;  margin-left: -80px;
+                    margin-top: 10px;">
+    </div>
+</div>
+
+<div class="center">
+    <p id="text1">Welcome Travelers</p>
+    <p id="text2">The Travel Buddy is a Good App</p>
+</div>
+<div style="  position: fixed;
+bottom: 200px;
+right: 500px;">
+    <form action="/php-mvc-master/public/Mapquest/load" method="get">
+        <button type="submit">Map</button>
+    </form>
+</div>
+
+
+
+
+
+
+
+{% endif %}
 
 {% endblock %}

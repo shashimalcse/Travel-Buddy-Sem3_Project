@@ -3,32 +3,119 @@
 {% block title %}Home{% endblock %}
 
 {% block footer %}
+<script src="/php-mvc-master/public/js/imagepreview.js"></script>
+<script src="/php-mvc-master/public/js/getlocation.js"></script>
+<link rel="stylesheet" href="/php-mvc-master/public/css/formstyles.css" />
+<script>
+
+        $(document).ready(function(){
+            $('#formVehical').validate({
+                rules:{
+                    fullname: 'required',
+                    address:'required',
+                    telephone: {
+                        required: true,
+                        minlength: 10,
+                    }
+        
+                },
+                messages:{
+                    telephone:{
+                        remote: 'Enter valid Phone Number'
+                    }
+                }
+            });
+        });
+        
+        </script>
 
 {% endblock %}
 
 {% block body %}
 
-    <h1>Guide</h1>
+    <div class="wrapper">
 
-    <form method="post" action="/php-mvc-master/public/signup/create" id="formSignup">
+            <h1 style="text-align: center;">Add Guide</h1>
 
-        <div class="form-group">
-            <label for="inputName">Name</label>
-            <input id="inputName" name="name" placeholder="Name" autofocus value="{{ user.name}}" required class="form-control"/>
+            <form method="post" enctype="multipart/form-data"  action="/php-mvc-master/public/imformation/add-guider" id="formVehical">
+                <div class="form-group">
+                        <label for="hotelname">Name : </label>
+                        <input type="text" class="form-control" name="name" id="hotelname" autofocus required>
+                    </div>
+                <div class="form-group">
+                            <label for="address">Address : </label>
+                            <input type="text" class="form-control" name="address" id="address" required >
+                </div>    
+                <div class="form-group">
+                        <label for="telephone">Telephone Number : </label>
+                        <input type="tel" class="form-control" name="telephone" id="telephone" required >
+                    </div>
+                    <div class="form-group">
+                
+                            <label for="vehicleType">Number of days : </label>
+                            <select name="days" id="vehicaltype" class="custom-select" required>
+                                <option selected>Choose one</option>
+                                <option value="1 Day">1 Day</option>
+                                <option value="2 Days">2 Days</option>
+                                <option value="3 Days">3 Days</option>
+                                <option value="More Days">More Days</option>
+>
+                            </select>
+                        </div>     
+           
+                <div class="form-group">
+                    <label for="hotelDetails">More Details: </label>
+                    <br>
+                    <textarea name="detail" class="form-control" id="vehicleDetails" maxlength="1000"
+                        placeholder="Do not exceed more than 1000 characters"></textarea>
+                    <br>
+                </div>
+                Location:
+                <button type="button" name="getLocation" class="btn btn-primary" onclick="unhideFunction()">Get
+                    location</button>
+                <br><br>
+
+                <div id="hideLocation" class="mapcontainer" style="display: none;">
+                    <div class="row">
+                        <div id="dvMap" style="width: 310px; height: 250px; margin-left: 2%;
+                                                                            margin-right: 2%;
+                                                                            margin-top: 2%;">
+                        </div>
+                    </div><br><br>
+                    <div class="row">
+
+                        <div class="locationColumn">
+                            <div class="header-marker">
+                                <div class="col-md-5 signupbox">
+                                    <div class="form-group">
+                                        <input type="number" step="any" id="Latitude" name="shopLatitude"
+                                            class="location" value="" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" step="any" id="Longitude" name="shopLongitude"
+                                            class="location" value="" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="button" class="btn btn-primary" value="Current Position"
+                                            onclick="getLocationConstant()" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Save</button>
+                
+            </form>
         </div>
-
-        <div class="form-group">
-            <label for="inputEmail">Email</label>
-            <input id="inputEmail" name="email" placeholder="Email" value="{{ user.email}}" required type="email" class="form-control"/>
-        </div>
-
-        <div class="form-group">
-            <label for="inputPassword">Password</label>
-            <input type="password" id="inputPassword" name="password" placeholder="Password" required class="form-control"/>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Sign up</button>
-
-    </form>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?keyAIzaSyBByZ9yBJHULD6Va0HlE_vNvfRUvohhxNQ&callback=initMap">
+    </script>
 
 {% endblock %}

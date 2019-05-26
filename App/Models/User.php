@@ -6,7 +6,7 @@ use PDO;
 use \App\Token;
 use \App\Mail;
 use \Core\View;
-use \App\Models\Imformations;
+use \App\Models\ImformationM;
 
 
 /**
@@ -318,8 +318,31 @@ class User extends \Core\Model{
         }
         public function addVehical($data,$files){
 
-            return Imformation::addVehical($data,$files,$this->id);
+            return ImformationM::addVehical($data,$files,$this->id);
 
+        }
+
+        public function addHotel($data,$files){
+
+            return ImformationM::addHotel($data,$files,$this->id);
+
+        }
+
+        public function addShop($data,$files){
+
+            return ImformationM::addShop($data,$files,$this->id);
+
+        }
+
+        public function addGuider($data){
+
+            return ImformationM::addGuider($data,$this->id);
+
+        }
+
+        public static function returnUserID(){
+            
+            return $this->id;
         }
 
 }

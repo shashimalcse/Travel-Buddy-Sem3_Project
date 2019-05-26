@@ -2,13 +2,36 @@
 
 {% block title %}Home{% endblock %}
 
+{% block footer %}
+
+<link rel="stylesheet" href="/php-mvc-master/public/css/hovereffect.css" />
+
+{% endblock %}
+
 {% block body %}
 
-    <h1>Choose</h1>
+    <div align="center" style="margin: 200px">
 
-    <a href="/php-mvc-master/public/imformation/shop">Shop</a>
-    <a href="/php-mvc-master/public/imformation/guider">Guider</a>
-    <a href="/php-mvc-master/public/imformation/hotel">Hotel</a>
-    <a href="/php-mvc-master/public/imformation/vehical">Vehical</a>
+    <a href="/php-mvc-master/public/imformation/shop" >
+        <div class='box foo'>
+          SHOP
+        </div>
+      </a>
+      <a href="/php-mvc-master/public/imformation/guider">
+        <div class='box foo'>
+          GUIDE
+        </div>
+      </a>
+      <a href="/php-mvc-master/public/imformation/hotel" >
+        <div class='box foo'>
+          HOTEL
+        </div>
+      </a>
+      <a href="/php-mvc-master/public/imformation/vehical" >
+        <div class='box foo'>
+          VEHICLE
+        </div>
+      </a>  
+    </div>
 
 {% endblock %}

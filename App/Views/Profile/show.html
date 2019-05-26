@@ -2,23 +2,38 @@
 
 {% block title %}Profile{% endblock %}
 
+{% block footer %}
+
+<link rel="stylesheet" href="/php-mvc-master/public/css/formstyles.css" />
+
+{% endblock %}
+
 {% block body %}
 
-    <h1>Profile</h1>
+    
+    <div class="wrapper">
 
-    <dl class="dl-horizontal">
+            <h1 style="text-align: center;">Profile</h1>
+
+    <dl>
         <dt>Name</dt>
         <dd>{{ user.name }}</dd>
 
         <dt>Email</dt>
         <dd>{{ user.email }}</dd>
     </dl>
+    <div class="dropdown">
     <div>
-        <a href="/php-mvc-master/public/imformation/choose">Add your business</a>
+        <a href="/php-mvc-master/public/imformation/choose">Add Business</a>
+    </div>
+    <div>
+            <a href="/php-mvc-master/public/imformation/edit-menu">Edit Business</a>
     </div>
 
-    <a href="/php-mvc-master/public/profile/edit">Edit</a>
+    <a href="/php-mvc-master/public/profile/edit">Edit Profile</a>
 
+</div>
+    </div>
     
 
 {% endblock %}

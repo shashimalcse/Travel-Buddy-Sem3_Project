@@ -6,6 +6,7 @@
 
 <script src="/php-mvc-master/public/js/hideShowPAssword.min.js"></script>
 <script src="/php-mvc-master/public/js/app.js"></script>
+<link rel="stylesheet" href="/php-mvc-master/public/css/formstyles.css" />
 <script>
 
 $(document).ready(function(){
@@ -44,7 +45,6 @@ $(document).ready(function(){
 
 {% block body %}
 
-    <h1>Sign Up</h1>
 
     {% if user.errors is not empty %}
         <p>Errors:</p>
@@ -55,6 +55,10 @@ $(document).ready(function(){
         </ul>
         
     {% endif %}
+
+    <div class="wrapper">
+
+            <h1 style="text-align: center;">Sign Up</h1>
 
     <form method="post" action="/php-mvc-master/public/signup/create" id="formSignup">
 
@@ -72,9 +76,12 @@ $(document).ready(function(){
             <label for="inputPassword">Password</label>
             <input type="password" id="inputPassword" name="password" placeholder="Password" required class="form-control"/>
         </div>
-
+        
         <button type="submit" class="btn btn-primary">Sign up</button>
+        
 
     </form>
+
+</div>
 
 {% endblock %}
