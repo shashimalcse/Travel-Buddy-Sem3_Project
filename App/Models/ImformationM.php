@@ -8,20 +8,17 @@ use \Core\View;
 class ImformationM extends \Core\Model{
 
 
-    public static function addVehical($data,$files,$id){
+    public static function addVehicalshop($data,$id){
 
         $name = $data['name'];
         $address = $data['address'];
         $telephone = $data['telephone'];
-        $vehicaltype = $data['vehicaltype'];
-        $model = $data['model'];
-        $detail = $data['detail'];
         $lat = $data['shopLatitude'];
         $lng = $data['shopLongitude'];
-        $photoArray = $files['userfile'];
         
-        $sql = 'INSERT INTO vehical (user_id,name,address,telephone_number,vehical_type,vehical_model,detail,lat,lng) VALUES
-                                (:user_id,:name,:address,:telephone_number,:vehical_type,:vehical_model,:detail,:lat,:lng)';
+        
+        $sql = 'INSERT INTO vehical (user_id,name,address,telephone_number,have,lat,lng) VALUES
+                                (:user_id,:name,:address,:telephone_number,:have,:lat,:lng)';
         
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -31,11 +28,41 @@ class ImformationM extends \Core\Model{
         $stmt->bindValue(':name',$name,PDO::PARAM_STR);
         $stmt->bindValue(':address',$address,PDO::PARAM_STR);
         $stmt->bindValue(':telephone_number',$telephone,PDO::PARAM_STR);
-        $stmt->bindValue(':vehical_type',$vehicaltype,PDO::PARAM_STR);
-        $stmt->bindValue(':vehical_model',$model,PDO::PARAM_STR);
-        $stmt->bindValue(':detail',$detail,PDO::PARAM_STR);
+        $stmt->bindValue(':have','1',PDO::PARAM_STR);
         $stmt->bindValue(':lat',$lat,PDO::PARAM_STR);
         $stmt->bindValue(':lng',$lng,PDO::PARAM_STR);
+
+        if($stmt->execute()){
+            
+            return true;
+
+        }else{
+
+            return false;
+        }
+
+    }
+    public static function addVehical($data,$files,$id){
+
+        $vehicaltype = $data['vehicaltype'];
+        $vehicalmodel = $data['vehicalmodel'];
+        $ac=$data['ac'];
+        $cost=$data['cost'];
+        $detail = $data['detail'];
+        $photoArray=$files['userfile'];
+
+        $sql = 'INSERT INTO vehical_list (user_id,vehical_type,vehical_model,ac,cost,detail)
+                            VALUES (:user_id,:vehical_type,:vehical_model,:ac,:cost,:detail)';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        
+        $stmt->bindValue(':user_id',$id,PDO::PARAM_INT);
+        $stmt->bindValue(':vehical_type',$vehicaltype,PDO::PARAM_STR);
+        $stmt->bindValue(':vehical_model',$vehicalmodel,PDO::PARAM_STR);
+        $stmt->bindValue(':ac',$ac,PDO::PARAM_STR);
+        $stmt->bindValue(':cost',$cost,PDO::PARAM_STR);
+        $stmt->bindValue(':detail',$detail,PDO::PARAM_STR);
 
         if($stmt->execute()){
             $last_id = $db->lastInsertId();
@@ -49,6 +76,7 @@ class ImformationM extends \Core\Model{
 
             return false;
         }
+
 
     }
     public static function addHotel($data,$files,$id){

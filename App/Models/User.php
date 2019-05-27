@@ -316,11 +316,17 @@ class User extends \Core\Model{
 
 
         }
+        public function addVehicalshop($data){
+
+            return ImformationM::addVehicalshop($data,$this->id);
+
+        }
         public function addVehical($data,$files){
 
             return ImformationM::addVehical($data,$files,$this->id);
 
         }
+
 
         public function addHotel($data,$files){
 
@@ -344,5 +350,27 @@ class User extends \Core\Model{
             
             return $this->id;
         }
+
+        public static function gethave($id){
+  
+            $sql = 'SELECT have FROM vehical WHERE user_id = :user_id';
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':user_id',$id,PDO::PARAM_INT);
+
+            $stmt->setFetchMode(PDO::FETCH_CLASS,get_called_class());
+            $stmt ->execute();
+            $have = $stmt->fetch();
+
+            if($have){
+
+                return true;
+            }
+
+
+        }
+
+
 
 }

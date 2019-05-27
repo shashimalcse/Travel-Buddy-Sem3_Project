@@ -35,9 +35,11 @@
 
     <div class="wrapper">
 
-            <h1 style="text-align: center;">Add Vehicle</h1>
+        {% if not have %}
 
-            <form method="post" enctype="multipart/form-data"  action="/php-mvc-master/public/imformation/add-vehical" id="formVehical">
+            <h1 style="text-align: center;">Add Vehicle Shop</h1>
+
+            <form method="post" enctype="multipart/form-data"  action="/php-mvc-master/public/imformation/add-vehicalshop" id="formVehical">
                 <div class="form-group">
                         <label for="model">Full Name : </label>
                         <input type="text" class="form-control" name="name" id="fullname" autofocus required >
@@ -51,38 +53,6 @@
                         <input type="tel" class="form-control" name="telephone" id="telephone" required >
                     </div>
     
-                <div class="form-group">
-                
-                    <label for="vehicleType">Select Vehicle Type : </label>
-                    <select name="vehicaltype" id="vehicaltype" class="custom-select" required>
-                        <option selected>Choose one</option>
-                        <option value="Car">Car</option>
-                        <option value="Van">Van</option>
-                        <option value="SUV">SUV</option>
-                        <option value="Cab">Cab</option>
-                        <option value="Bike">Bike</option>
-                        <option value="Bus">Bus</option>
-                    </select>
-                </div>
-    
-                <div class="form-group">
-                    <label for="model">Enter Vehicle Model : </label>
-                    <input type="text" class="form-control" name="model" id="model" required>
-                </div>
-    
-                <div class="form-group">
-                    <label for="image">Upload Images : </label>
-                    <input type="file" name="userfile[]" id="image" accept="image/*" multiple="" required>
-                </div>
-                <div id="image-holder" class="image-holder" style="display: none;"></div>
-    
-                <div class="form-group">
-                    <label for="vehicleDetails">More Details: </label>
-                    <br>
-                    <textarea name="detail" class="form-control" id="vehicleDetails" maxlength="1000"
-                        placeholder="Do not exceed more than 1000 characters"></textarea>
-                    <br>
-                </div>
                 Location:
                 <button type="button" name="getLocation" class="btn btn-primary" onclick="unhideFunction()">Get
                     location</button>
@@ -126,6 +96,60 @@
                 <button type="submit" class="btn btn-primary">Save</button>
                 
             </form>
+            {% else %}
+            <h1 style="text-align: center;">Add Vehicle</h1>
+
+            <form method="post" enctype="multipart/form-data"  action="/php-mvc-master/public/imformation/add-vehical" id="formVehical">
+    
+                <div class="form-group">
+                
+                    <label for="vehicleType">Select Vehicle Type : </label>
+                    <select name="vehicaltype" id="vehicaltype" class="custom-select" required>
+                        <option selected>Choose one</option>
+                        <option value="Car">Car</option>
+                        <option value="Van">Van</option>
+                        <option value="SUV">SUV</option>
+                        <option value="Cab">Cab</option>
+                        <option value="Bike">Bike</option>
+                        <option value="Bus">Bus</option>
+                    </select>
+                </div>
+    
+                <div class="form-group">
+                    <label for="model">Enter Vehicle Model : </label>
+                    <input type="text" class="form-control" name="vehicalmodel" id="model" required>
+                </div>
+                <div class="form-group">
+                <label class="switch">
+                        <input type="checkbox" name="ac" value="Yes">
+                        <span class="slider round"></span>
+                      </label>
+                    </div>    
+                    <div class="form-group">
+                            <label for="model">Cost per KM : </label>
+                            <input type="text" class="form-control" name="cost" id="model" required>
+                        </div>    
+    
+                <div class="form-group">
+                    <label for="image">Upload Images : </label>
+                    <input type="file" name="userfile[]" id="image" accept="image/*" multiple="" required>
+                </div>
+                <div id="image-holder" class="image-holder" style="display: none;"></div>
+    
+                <div class="form-group">
+                    <label for="vehicleDetails">More Details: </label>
+                    <br>
+                    <textarea name="detail" class="form-control" id="vehicleDetails" maxlength="1000"
+                        placeholder="Do not exceed more than 1000 characters"></textarea>
+                    <br>
+                </div>
+
+                
+                <button type="submit" class="btn btn-primary">Save</button>
+                
+            </form>
+
+            {% endif %}
         </div>
         <script async defer
         src="https://maps.googleapis.com/maps/api/js?keyAIzaSyBByZ9yBJHULD6Va0HlE_vNvfRUvohhxNQ&callback=initMap">

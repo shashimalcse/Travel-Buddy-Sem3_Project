@@ -40,7 +40,7 @@ class Imformation extends Authenticated{
     }
     public function vehicalAction(){
         
-        View::renderTemplate('Imformation/vehical_imformation.html');
+        View::renderTemplate('Imformation/vehical_imformation.html',['have' => static::gethave()]);
 
     }
     public function editMenuAction(){
@@ -51,6 +51,28 @@ class Imformation extends Authenticated{
                                                         ,'userguiderinfo' => static::getGuiderBusiness()]);
         
         
+
+    }
+    public static function gethave(){
+        $user = Auth::getUser();
+        return User::gethave($user->id);
+        
+    }
+    
+    public function addVehicalshopAction(){
+
+        if($this->user->addVehicalshop($_POST)){
+
+            Flash::addMessage('Saved');
+
+            $this->redirect('/php-mvc-master/public/profile/show');
+        }else{
+
+            Flash::addMessage('Please try again',Flash::WARNING);
+
+            View::renderTemplate('Imformation/vehical_imformation.html');
+        }
+
 
     }
     public function addVehicalAction(){
@@ -119,7 +141,7 @@ class Imformation extends Authenticated{
     }
     public static function getVehicalBusiness(){
         $user = Auth::getUser();
-        $userinfo = ImformationM::findByID('vehical',$user->id,'user_id');
+        $userinfo = ImformationM::findByID('vehical_list',$user->id,'user_id');
         return $userinfo;
     }
     public static function getHotelBusiness(){
@@ -140,7 +162,7 @@ class Imformation extends Authenticated{
 
     public function vehicalDelAction(){
         $id = $this->route_params['id'];
-        if(ImformationM::deleteByID('vehical',$id)){
+        if(ImformationM::deleteByID('vehical_list',$id)){
 
             Flash::addMessage('Removed');
 
