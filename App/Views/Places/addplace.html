@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block footer %}
+<script src="/php-mvc-master/public/js/imagepreview.js"></script>
+<script src="/php-mvc-master/public/js/getlocation.js"></script>
+<link rel="stylesheet" href="/php-mvc-master/public/css/formstyles.css" />
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="wrapper">
+
+            <h1 style="text-align: center;">Add Place</h1>
+
+            <form method="post" enctype="multipart/form-data"  action="/php-mvc-master/public/places/add-place" id="formVehical">
+                <div class="form-group">
+                        <label for="hotelname">Place Name : </label>
+                        <input type="text" class="form-control" name="name" id="hotelname" autofocus required>
+                    </div>
+                <div class="form-group">
+                            <label for="address">Description : </label>
+                            <input type="text" class="form-control" name="description" id="address" required >
+                </div>              
+                <div class="form-group">
+                    <label for="image">Upload Images : </label>
+                    <input type="file" name="image" id="image" accept="image/*" multiple="" required>
+                </div>
+                <div id="image-holder" class="image-holder" style="display: none;"></div>
+    
+                
+                <button type="submit" class="btn btn-primary">Save</button>
+                
+            </form>
+        </div>
+
+{% endblock %}

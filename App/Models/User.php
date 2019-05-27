@@ -371,6 +371,54 @@ class User extends \Core\Model{
 
         }
 
+        public static function addPlaceAction($data,$files){
+
+            $name = ucwords($data['name']);
+            $description = $data['description'];
+            $file_array = $files['image'];
+            
+            $sql = 'INSERT INTO places (name,description) VALUES
+                                    (:name,:description)';
+            
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+    
+    
+    
+            $stmt->bindValue(':name',$name,PDO::PARAM_STR);
+            $stmt->bindValue(':description',$description,PDO::PARAM_STR);
+     
+    
+            if($stmt->execute()){
+                $last_id = $db->lastInsertId();
+                $directoryName = '../Resource/Places/' . $last_id . '/';
+                mkdir($directoryName, 0755, true);
+                move_uploaded_file($file_array['tmp_name'],$directoryName.$last_id.".jpg");
+
+                return true;
+    
+            }else{
+    
+                return false;
+            }
+
+        }
+
+        public static function getPlaces(){
+            $sql = 'SELECT * FROM places ';
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            $stmt->setFetchMode(PDO::FETCH_CLASS,get_called_class());
+            $stmt ->execute();
+            $places = $stmt->fetchAll();
+
+            if($places){
+
+                return $places;
+            }
+        }
+
 
 
 }

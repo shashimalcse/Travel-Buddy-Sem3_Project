@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+<body>
+
+        <div class="container">
+    
+      <!-- Page Heading -->
+      <h1 class="my-4" style="color:#ff7300">FAVOURIT PLACES
+      </h1>
+      <div style="position:absolute ; top: 140px; right: 250px;">
+            <a href="/php-mvc-master/public/places/add" style="color:#ff7300"><i class="fas fa-plus-circle"></i>ADD</a>
+      </div>
+      
+      <div class="row">
+          {% if data is not empty %}
+
+            {% for place in data  %}
+      <div class="col-lg-4 col-sm-6 mb-4">
+            <div class="card h-100">
+                   
+              <a href="#"><img class="card-img-top" src='/php-mvc-master/Resource/Places/{{ place.id }}/{{ place.id }}.jpg' sizes=700x400 alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">{{ place.name }}</a>
+                </h4>
+                <p class="card-text">{{ place.description }}</p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+        {% endif %}
+    </div>
+    
+      
+      <!-- /.row -->
+    
+    
+    </div>
+    
+      </body>
+
+{% endblock %}

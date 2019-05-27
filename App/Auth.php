@@ -40,10 +40,10 @@ class Auth{
         static::forgetLogin();
 
     }
-    /*public static function isLoggedIn(){
+    public static function isLoggedIn(){
 
         return isset($_SESSION['user_id']);
-    }*/
+    }
     public static function rememberRequestedPage(){
 
         $_SESSION['return_to']=$_SERVER['REQUEST_URI'];
