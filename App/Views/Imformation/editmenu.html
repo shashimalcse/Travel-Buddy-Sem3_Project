@@ -5,6 +5,7 @@
 {% block footer %}
 
 <link rel="stylesheet" href="/php-mvc-master/public/css/formstyles.css" />
+<script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
 
 {% endblock %}
 
@@ -16,7 +17,8 @@
             <h1 style="text-align: center;">Business</h1>
 
     {% if uservehicalinfo is not empty %}
-    <p>Vehicals:</p>
+    <p><i class="fas fa-car"></i> Vehicals:</p>
+    
     <ul>
         {% for business in uservehicalinfo %}
             <dl>
@@ -28,7 +30,7 @@
     </ul>
     {% endif %}
     {% if userhotelinfo is not empty %}
-    <p>Hotels:</p>
+    <p><i class="fas fa-hotel"></i> Hotels:</p>
     <ul>
         {% for business in userhotelinfo %}
             <dl>
@@ -40,7 +42,7 @@
     </ul>
     {% endif %}
     {% if usershopinfo is not empty %}
-    <p>Shops:</p>
+    <p><i class="fas fa-store"></i> Shops:</p>
     <ul>
         {% for business in usershopinfo %}
             <dl>
@@ -52,7 +54,7 @@
     </ul>
     {% endif %}
     {% if userguiderinfo is not empty %}
-    <p>Guide:</p>
+    <p><i class="fas fa-hiking"></i> Guide:</p>
     <ul>
         {% for business in userguiderinfo %}
             <dl>

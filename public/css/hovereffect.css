@@ -2,7 +2,7 @@
   .box {
     position:relative;
     vertical-align: middle;
-    color: #00ffff;
+    color: #000000;
     display: inline-block;
     height: 60px;
     line-height: 60px;
@@ -10,7 +10,7 @@
     transition: 0.5s;
     padding: 0 20px;
     cursor: pointer;
-    border: 2px solid #00ffff;
+    border: 2px solid #ff7300;
     -webkit-transition:0.5s;
     font-family: sans-serif;
     font-weight: 100;
@@ -35,6 +35,42 @@
     transition: 0.5s;
   }
   
+  .boxx {
+    position:relative;
+    vertical-align: middle;
+    color: #000000;
+    display: inline-block;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    transition: 0.5s;
+    padding: 0 20px;
+    cursor: pointer;
+    border: 2px solid #ff7300;
+    -webkit-transition:0.5s;
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 13px;
+  }
+  
+  .boxx:hover {
+    border: 2px solid rgba(0,160,80,0);
+    color: #FFF;
+  }
+  
+  .boxx::before, .boxx::after {
+    width: 100%;
+    height:100%;
+    z-index: 3;
+    content:'';
+    position: absolute;
+    top:0;
+    left:0;
+    box-sizing: border-box;
+    -webkit-transform: scale(0);
+    transition: 0.5s;
+  }
+  
   .foo::before {
     border-bottom: 3px solid #FFF;
     border-left: 3px solid #FFF;
@@ -47,6 +83,9 @@
     -webkit-transform-origin: 100% 0%;
   }
   .box:hover::after, .box:hover::before {
+    -webkit-transform: scale(1);
+  }
+  .boxx:hover::after, .boxx:hover::before {
     -webkit-transform: scale(1);
   }
   

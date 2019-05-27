@@ -11,6 +11,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="/php-mvc-master/public/css/styles.css" />
   <link rel="icon" sizes="256x256" href="/php-mvc-master/public/resource/logo2.png">
+  <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
+
   <style>
       .navbar-custom {
         background-color: #222222;
@@ -32,28 +34,28 @@
 
         {% if current_user %}
         <li class="nav-item">
-          <a class="nav-link" href="/php-mvc-master/public/mapquest/load">Map</a>
+          <a class="nav-link" href="/php-mvc-master/public/mapquest/load"><i class="fas fa-map-marked-alt"></i> Map</a>
 
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/php-mvc-master/public/profile/show">{{ current_user.name }}</a>
+          <a class="nav-link" href="/php-mvc-master/public/profile/show"><i class="fas fa-user"></i> {{ current_user.name }}</a>
 
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/php-mvc-master/public/logout">Logout</a>
+          <a class="nav-link" href="/php-mvc-master/public/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
 
         </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="/php-mvc-master/public/">Home</a>
+          <a class="nav-link" href="/php-mvc-master/public/"><i class="fas fa-home"></i> Home</a>
 
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/php-mvc-master/public/signup/new"><span class="fas fa-user"></span>Sign Up</a>
+          <a class="nav-link" href="/php-mvc-master/public/signup/new"><i class="fas fa-user-plus"></i> Sign Up</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/php-mvc-master/public/login"><span class="fas fa-sign-in-alt"></span>Login</a>
+          <a class="nav-link" href="/php-mvc-master/public/login"><i class="fas fa-sign-in-alt"></i> Login</a>
         </li>
         {% endif %}
       </ul>

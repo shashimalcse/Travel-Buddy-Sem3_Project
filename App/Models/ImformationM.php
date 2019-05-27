@@ -10,7 +10,7 @@ class ImformationM extends \Core\Model{
 
     public static function addVehicalshop($data,$id){
 
-        $name = $data['name'];
+        $name = ucwords($data['name']);
         $address = $data['address'];
         $telephone = $data['telephone'];
         $lat = $data['shopLatitude'];
@@ -81,7 +81,7 @@ class ImformationM extends \Core\Model{
     }
     public static function addHotel($data,$files,$id){
 
-        $name = $data['name'];
+        $name = ucwords($data['name']);
         $address = $data['address'];
         $telephone = $data['telephone'];
         $detail = $data['detail'];
@@ -120,7 +120,7 @@ class ImformationM extends \Core\Model{
     }
     public static function addShop($data,$files,$id){
 
-        $name = $data['name'];
+        $name = ucwords($data['name']);
         $address = $data['address'];
         $telephone = $data['telephone'];
         $shoptype = $data['shoptype'];
@@ -163,7 +163,7 @@ class ImformationM extends \Core\Model{
     }
     public static function addGuider($data,$id){
 
-        $name = $data['name'];
+        $name = ucwords($data['name']);
         $address = $data['address'];
         $telephone = $data['telephone'];
         $days = $data['days'];

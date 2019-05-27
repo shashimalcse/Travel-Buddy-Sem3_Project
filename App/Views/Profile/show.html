@@ -5,6 +5,9 @@
 {% block footer %}
 
 <link rel="stylesheet" href="/php-mvc-master/public/css/formstyles.css" />
+<link rel="stylesheet" href="/php-mvc-master/public/css/hovereffect.css" />
+<script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
+
 
 {% endblock %}
 
@@ -13,7 +16,7 @@
     
     <div class="wrapper">
 
-            <h1 style="text-align: center;">Profile</h1>
+            <h1 style="text-align: center;"><i class="fas fa-user"></i> Profile</h1>
 
     <dl>
         <dt>Name</dt>
@@ -22,18 +25,29 @@
         <dt>Email</dt>
         <dd>{{ user.email }}</dd>
     </dl>
-    <div class="dropdown">
-    <div>
-        <a href="/php-mvc-master/public/imformation/choose">Add Business</a>
-    </div>
-    <div>
-            <a href="/php-mvc-master/public/imformation/edit-menu">Edit Business</a>
-    </div>
-
-    <a href="/php-mvc-master/public/profile/edit">Edit Profile</a>
 
 </div>
-    </div>
+
+<div align="center">
+    <a href="/php-mvc-master/public/imformation/choose" >
+        <div class='boxx foo'>
+          ADD BUSINESS
+        </div>
+      </a>
+      <a href="/php-mvc-master/public/imformation/edit-menu" >
+        <div class='boxx foo'>
+          EDIT BUSINESS
+        </div>
+      </a>
+      <a href="/php-mvc-master/public/profile/edit" >
+        <div class='boxx foo'>
+          EDIT PROFILE
+        </div>
+      </a>   
+</div>  
+
+
+
     
 
 {% endblock %}
