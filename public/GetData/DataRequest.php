@@ -83,7 +83,7 @@ Class HotelData implements Strategy{
 Class ShopData implements Strategy{
     public function getData($user_id,$id){
         include_once 'dB.php';
-        $sql = "SELECT * FROM shop where user_id='$user_id'";
+        $sql = "SELECT * FROM shop where id='$id'";
         $result = mysqli_query($conn,$sql);
         $details = array();
         while($row = mysqli_fetch_array($result)){
