@@ -245,7 +245,7 @@ public function guiderDelAction(){
     public function shopEditAction(){
         $id = $this->route_params['id'];
         
-        $userhotelinfo = ImformationM::findByID('shop',$id,'id');
+        $usershopinfo = ImformationM::findByID('shop',$id,'id');
       
         View::renderTemplate('Imformation/shopedit.html',['usershopinfo' => $usershopinfo[0]]);
 

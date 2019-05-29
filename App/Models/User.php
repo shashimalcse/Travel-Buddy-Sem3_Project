@@ -419,6 +419,21 @@ class User extends \Core\Model{
             }
         }
 
+        public static function getGuide(){
+            $sql = 'SELECT * FROM guider ';
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            $stmt->setFetchMode(PDO::FETCH_CLASS,get_called_class());
+            $stmt ->execute();
+            $places = $stmt->fetchAll();
+
+            if($places){
+
+                return $places;
+            }
+        }
+
 
 
 }

@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}{% block body %}<body>
+
+<div
+    class="container">
+
+    <!-- Page Heading -->
+    <h1 class="my-4" style="color:#ff7300; margin-left:80px;">WE GUIDE YOU
+    </h1>
+    <div style="position:absolute; top:120px; right:200px; ">
+        <form action="/php-mvc-master/public/guidesearch/show" class="form-inline" enctype="multipart/form-data" id="formVehical" method="post">
+            <div class="form-group" style="width:100px; margin-right:20px;">
+
+
+                <select class="custom-select" id="vehicaltype" name="dayfilter" required>
+                    <option selected value="All">All</option>
+                    <option value="1 Day">1 Day</option>
+                    <option value="2 Days">2 Days</option>
+                    <option value="3 Days">3 Days</option>
+                    <option value="More Days">More Days</option>
+                    >
+                </select>
+            </div>
+
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="row">
+        {% if data is not empty %}
+        {% if day=='All'%}
+        {% for guide in data  %}
+
+                    {% if guide.days=='All' %}
+                        <div class="col-lg-4 col-sm-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="#">{{ guide.name }}</a>
+                                    </h4>
+                                    <h5 class="card-title">
+                                        <a href="#">{{ guide.address }}</a>
+                                        <br>
+                                        <a href="#">{{ guide.telephone_number }}</a>
+                                        <br>
+                                        <a href="#">{{ guide.days }}
+                                            trips</a>
+                                    </h5>
+                                    <p class="card-text">{{ guide.detail }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endif %}
+            {% endfor %}
+
+            {% endif %}
+            {% if day=='1 Day'%}
+            {% for guide in data  %}
+    
+                        {% if guide.days=='1 Day' %}
+                            <div class="col-lg-4 col-sm-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <a href="#">{{ guide.name }}</a>
+                                        </h4>
+                                        <h5 class="card-title">
+                                            <a href="#">{{ guide.address }}</a>
+                                            <br>
+                                            <a href="#">{{ guide.telephone_number }}</a>
+                                            <br>
+                                            <a href="#">{{ guide.days }}
+                                                trips</a>
+                                        </h5>
+                                        <p class="card-text">{{ guide.detail }}</p>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        {% endif %}
+                {% endfor %}
+    
+                {% endif %}    
+
+                {% if day=='2 Days'%}
+                {% for guide in data  %}
+        
+                            {% if (guide.days=='1 Day') or (guide.days=='2 Days') %}
+                                <div class="col-lg-4 col-sm-6 mb-4">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h4 class="card-title">
+                                                <a href="#">{{ guide.name }}</a>
+                                            </h4>
+                                            <h5 class="card-title">
+                                                <a href="#">{{ guide.address }}</a>
+                                                <br>
+                                                <a href="#">{{ guide.telephone_number }}</a>
+                                                <br>
+                                                <a href="#">{{ guide.days }}
+                                                    trips</a>
+                                            </h5>
+                                            <p class="card-text">{{ guide.detail }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                            {% endif %}
+                    {% endfor %}
+        
+                    {% endif %}  
+
+                    {% if day=='3 Days'%}
+                    {% for guide in data  %}
+            
+                                {% if (guide.days=='1 Day') or (guide.days=='2 Days') or (guide.days=='3 Days') %}
+                                    <div class="col-lg-4 col-sm-6 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h4 class="card-title">
+                                                    <a href="#">{{ guide.name }}</a>
+                                                </h4>
+                                                <h5 class="card-title">
+                                                    <a href="#">{{ guide.address }}</a>
+                                                    <br>
+                                                    <a href="#">{{ guide.telephone_number }}</a>
+                                                    <br>
+                                                    <a href="#">{{ guide.days }}
+                                                        trips</a>
+                                                </h5>
+                                                <p class="card-text">{{ guide.detail }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                {% endif %}
+                        {% endfor %}
+            
+                        {% endif %}  
+
+                        {% if day=='More Days'%}
+                        {% for guide in data  %}
+                
+                                    
+                                        <div class="col-lg-4 col-sm-6 mb-4">
+                                            <div class="card h-100">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">
+                                                        <a href="#">{{ guide.name }}</a>
+                                                    </h4>
+                                                    <h5 class="card-title">
+                                                        <a href="#">{{ guide.address }}</a>
+                                                        <br>
+                                                        <a href="#">{{ guide.telephone_number }}</a>
+                                                        <br>
+                                                        <a href="#">{{ guide.days }}
+                                                            trips</a>
+                                                    </h5>
+                                                    <p class="card-text">{{ guide.detail }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                
+                                    
+                            {% endfor %}
+                
+                            {% endif %}  
+        {% endif %}
+    </div>
+
+
+    <!-- /.row -->
+
+
+</div></body>{% endblock %}
