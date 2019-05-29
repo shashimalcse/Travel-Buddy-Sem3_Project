@@ -101,6 +101,24 @@ window.onload = function () {
         }
     }).addTo(map);
 
+    //460*700
+    var rightSidebar = L.control.sidebar('sidebar-right', {
+        position: 'right',
+        closeButton: true,
+        autoPan: false,
+
+    });
+    map.addControl(rightSidebar);
+
+
+
+    // setTimeout(function () {
+    //     rightSidebar.toggle();
+    // }, 2000);
+
+
+
+
     var circleArray = Array();
     var desArray = Array();
     //layers
@@ -130,6 +148,7 @@ window.onload = function () {
     var opB1 = '<div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="hotelAll" ><label class="custom-control-label" for="hotelAll">AllHotels</label> </div>';
     var opB2 = '<div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="vehiclerenterAll" ><label class="custom-control-label" for="vehiclerenterAll">AllVehicles</label></div>';
     var opB3 = '<div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="shopsAll"><label class="custom-control-label" for="shopsAll">AllShops</label></div>';
+
 
     var opbox = '<div class= "opboxes">' + opB1 + opB2 + opB3 + '</div>';
     var box = '<div>' + checkbox + opbox + '</div>';
@@ -232,6 +251,14 @@ window.onload = function () {
                     hotelLayer.addTo(map);
                 }
                 break;
+            case "shops":
+                if (hotelFetch == false) {
+                    ajaxCall(type, shopLayer);
+                    shopsFetch = true;
+                } else {
+                    shopLayer.addTo(map);
+                }
+                break;
             case "vehiclerenterAll":
                 if (vehiclerenterFetchAll == false) {
                     ajaxCallAll("vehiclerenter", vehiclerenterLayerAll);
@@ -248,6 +275,14 @@ window.onload = function () {
                     hotelLayerAll.addTo(map);
                 }
                 break;
+            case "shopsAll":
+                if (shopsFetchAll == false) {
+                    ajaxCallAll("shops", shopLayerAll);
+                    shopsFetchAll = true;
+                } else {
+                    shopLayerAll.addTo(map);
+                }
+                break;
         }
     }
 
@@ -261,12 +296,20 @@ window.onload = function () {
                 hotelLayer.remove();
                 break;
 
+            case "shops":
+                shopLayer.remove();
+                break;
+
             case "vehiclerenterAll":
                 vehiclerenterLayerAll.remove();
                 break;
 
             case "hotelAll":
                 hotelLayerAll.remove();
+                break;
+
+            case "shopsAll":
+                shopLayerAll.remove();
                 break;
         }
 
@@ -276,7 +319,7 @@ window.onload = function () {
 
         $.ajax({
 
-            url: 'data.php',
+            url: '../GetData/data.php',
 
             type: 'POST',
             //passing variable to php
@@ -287,7 +330,7 @@ window.onload = function () {
             success: function (data) {
 
                 myJSON = JSON.parse(data);
-                //console.log(typeof myJSON);
+                console.log(myJSON);
                 layer.addData(myJSON);
 
                 layer.on("click", markerOnClick);
@@ -295,6 +338,8 @@ window.onload = function () {
             },
         });
     }
+
+
 
     function addTodesArray() {
         //creating destinations array and circles
@@ -317,7 +362,7 @@ window.onload = function () {
 
         $.ajax({
 
-            url: 'data.php',
+            url: '../GetData/data.php',
 
             type: 'POST',
             //passing variable to php
@@ -352,34 +397,35 @@ window.onload = function () {
     function markerOnClick(e) {
 
         //add here shop details
-        var div = $('<div id="markerDetails" />');
+
         props = e.layer.feature.properties;
         geometry = e.layer.feature.geometry;
         type = e.layer.feature.type;
 
-        $.dialog({
-            "body": div,
-            "title": "DETAILS",
-            "show": true,
-            "modal": true
-        });
-        requestData(props.name, props.title, props.id);
+        rightSidebar.hide();
+        $("#sidebar-right-content").empty();
+        console.log("userid"+props.userid, "title"+props.title,"id"+props.id);
+        requestData(props.userid, props.title, props.id);
+        load_rating(props.id, props.title);
+        rightSidebar.show();
+        
         //ajaxVehicleRenter(props.name,props.title);
 
     }
 
-    function requestData(username, title, id) {
+    function requestData(user_id, title, id) {
         $.ajax({
 
-            url: 'DataRequest.php',
+            url: '../GetData/DataRequest.php',
 
             type: 'POST',
             //passing variable to php
 
             data: {
-                'user': username,
+                'user': user_id,
                 'title': title,
                 'id': id
+
             },
 
             async: true,
@@ -390,54 +436,122 @@ window.onload = function () {
                 switch (title) {
                     case 'vehiclerenter':
                         recievedData.forEach(element => {
-
-                            image_holder = $("<div class=image-holder-dialog>");
-                            $("#markerDetails").append(image_holder);
-                            $("<p><b>Type : </b>" + element.type + "</p>").appendTo(image_holder);
-                            $("<p><b>Model : </b>" + element.model + "</p>").appendTo(image_holder);
+                            //div class = img-holder
+                            image_holder = $("<div class='jumbotron'>");
+                            $("#sidebar-right-content").append(image_holder);
+                            $("<h4 align='center'>" + element.type + "</h3>").appendTo(image_holder);
+                            
+                            $("<hr><pre class='text-secondary'><i class='fas fa-car'></i><b> Modal : </b>" + element.model + "</pre>").appendTo(image_holder);
+                            $("<hr><pre class='text-secondary'><i class='fas fa-wind'></i><b> AC : </b>" + element.ac + "</pre>").appendTo(image_holder);
+                            $("<hr><pre class='text-secondary'><i class='fas fa-dollar-sign'></i><b> Cost Rs : </b>" + element.cost + "</pre>").appendTo(image_holder);
+                            //can change width and height 
+                            foto = $(`<div class="fotorama" data-width="100%"
+                                data-height="250" data-auto="false"
+                                data-allowfullscreen="true"
+                                ></div>`);
+                            image_holder.append(foto);
                             (element.files).forEach(el => {
 
-                                img_src = element.directory + el;
+                                img_src = JSON.stringify(element.directory + el);
+                                foto.append(`<img src=${img_src} >`);
 
-                                $("<img />", {
-                                    "src": img_src,
-                                    "class": "thumb-image",
-                                    "style": "width:33.3%;height:150px"
-                                }).appendTo(image_holder);
                             });
-                            $("<p><b>Details : </b>" + element.details + "</p>").appendTo(image_holder);
+
+                            $("<pre class='text-secondary'><i class='fas fa-info-circle'></i><b> Details : </b>" + element.details + "</pre>").appendTo(image_holder);
+
                         });
+                        jumbo = $("<div class='jumbotron'>");
+                        $("#sidebar-right-content").append(jumbo);
+                        jumbo.append(`<div id="rate-container">
+                            <p id="current-rating">Current Rating: </p>
+                            <p>Rate:
+                            <i class="far fa-star" id="starone"data-index="0" ></i>
+                            <i class="far fa-star" data-index="1" ></i>
+                            <i class="far fa-star" data-index="2" ></i>
+                            <i class="far fa-star" data-index="3" ></i>
+                            <i class="far fa-star" data-index="4" ></i></p>
+                        </div>`);
+                        addRateEvent(id,title);
+                        load_rating(id,title);
+
+                        $('.fotorama').fotorama();
                         break;
 
-                        case 'hotel':
-                            recievedData.forEach(element => {
+                    case 'hotel':
+                        recievedData.forEach(element => {
 
-                                image_holder = $("<div class=image-holder-dialog>");
-                                $("#markerDetails").append(image_holder);
-                                $("<pre class='text-secondary'><b>Hotel : </b>"+element.hotelName+"</pre>").appendTo(image_holder);
-                                $("<pre class='text-secondary'><b>Rooms : </b>"+element.rooms+"</pre>").appendTo(image_holder);
-                                $("<pre class='text-secondary'><b>Price : Rs.</b>"+element.price+"</pre>").appendTo(image_holder);
-                                $("<pre class='text-secondary'><b>Facilities : </b>"+element.facilities+"</pre>").appendTo(image_holder);
-                                
+                            image_holder = $("<div class='jumbotron' id='marker-detail' style='padding:25px 20px'>");
+                            $("#sidebar-right-content").append(image_holder);
+                            $("<h4 align='center'>" + element.hotelName + "</h3>").appendTo(image_holder);
+                            $("<pre class='text-secondary'><i class='fas fa-info-circle'></i><b> Details : </b>" + element.details + "</pre>").appendTo(image_holder);
+                            $("<hr><pre class='text-secondary'><i class='fas fa-phone'></i><b> Contact : </b>" + element.telephone + "</pre>").appendTo(image_holder);
+                            $("<hr><pre class='text-secondary'><i class='fas fa-road'></i><b> Address : </b>" + element.address + "</pre>").appendTo(image_holder);
+
+                            foto = $(`<div class="fotorama" data-width="100%"
+                                data-height="250" data-auto="false"
+                                data-allowfullscreen="true"
+                                ></div>`);
+                            image_holder.append(foto);
+
                             (element.files).forEach(el => {
-
-
-
-                                img_src=element.directory+el;
-
-                                $("<img />", {
-                                    "src": img_src,
-                                    "class": "thumb-image",
-                                    "style": "width:33.3%;height:150px"
-                                }).appendTo(image_holder);
+                                img_src = JSON.stringify(element.directory + el);
+                                foto.append(`<img src=${img_src} >`);
                             });
 
-                        });
-                        break;
-                    
-                   
+                            image_holder.append(`<div id="rate-container">
+                            <p id="current-rating">Current Rating: </p>
+                            <p>Rate:
+                            <i class="far fa-star" id="starone"data-index="0" ></i>
+                            <i class="far fa-star" data-index="1" ></i>
+                            <i class="far fa-star" data-index="2" ></i>
+                            <i class="far fa-star" data-index="3" ></i>
+                            <i class="far fa-star" data-index="4" ></i></p>
+                        </div>`);
 
-                    
+
+
+                        });
+                        $('.fotorama').fotorama();
+                        
+                        console.log('hotelid'+id);
+                        addRateEvent(id,title);
+                        load_rating(id,title);
+                        break;
+
+                    case 'shops':
+                        recievedData.forEach(element => {
+                            image_holder = $("<div class='jumbotron'style='padding:25px 20px'>");
+                            $("#sidebar-right-content").append(image_holder);
+                            $("<h4 align='center'>" + element.shopName + "</h3>").appendTo(image_holder);
+                            $("<hr><pre class='text-secondary'><i class='fas fa-store-alt'></i><b> Shop Type : </b>" + element.shopType + "</pre>").appendTo(image_holder);
+                            $("<hr><pre class='text-secondary'><i class='fas fa-info-circle'></i><b> Details : </b>" + element.details + "</pre>").appendTo(image_holder);
+                            $("<hr><pre class='text-secondary'><i class='fas fa-phone'></i><b> Contact : </b>" + element.telephone + "</pre>").appendTo(image_holder);
+                            $("<hr><pre class='text-secondary'><i class='fas fa-road'></i><b> Address : </b>" + element.address + "</pre>").appendTo(image_holder);
+
+                            foto = $(`<div class="fotorama" data-width="100%"
+                                data-height="250" data-auto="false"
+                                data-allowfullscreen="true"
+                                ></div>`);
+                            image_holder.append(foto);
+                            (element.files).forEach(el => {
+                                img_src = JSON.stringify(element.directory + el);
+                                foto.append(`<img src=${img_src} >`);
+                            });
+                            image_holder.append(`<div id="rate-container">
+                            <p id="current-rating">Current Rating: </p>
+                            <p>Rate:
+                            <i class="far fa-star" id="starone"data-index="0" ></i>
+                            <i class="far fa-star" data-index="1" ></i>
+                            <i class="far fa-star" data-index="2" ></i>
+                            <i class="far fa-star" data-index="3" ></i>
+                            <i class="far fa-star" data-index="4" ></i></p>
+                        </div>`);
+                        });
+                        $('.fotorama').fotorama();
+                        addRateEvent(id,title);
+                        load_rating(id,title);
+                        break;
+
                 }
 
             },
@@ -445,6 +559,117 @@ window.onload = function () {
         });
 
     }
+
+    function addRateEvent(id,title){
+        $('.fa-star').click(function () {
+            ratedIndex = parseInt($(this).data('index'));
+            var current_user = 0;
+            $.get("http://localhost/php-mvc-master/public/mapquest/current-user", function (data,status) {
+                
+                current_user = data;
+                rate = ratedIndex + 1;
+                console.log(id+'id'+title+'title'+rate+'rate'+'user'+current_user);
+                update_rating(id, title, rate, current_user);
+                load_rating(id, title);
+
+            }).fail(function () {
+                alert("fail")
+            });
+        });
+    }
+
+
+    function load_rating(id, type) {
+
+        $.ajax({
+
+            url: '../GetData/fetch.php',
+
+            type: 'POST',
+
+            data: {
+                'id': id,
+                'type': type,
+            },
+            success: function (data) {
+
+                myJSON = JSON.parse(data);
+                console.log("load_rate");
+                console.log(myJSON);
+                $("#current-rating").text("Current Rating: " + myJSON[0].rate+"/5");
+            },
+            error: function () {
+                alert("ajax error");
+            }
+        });
+    };
+
+    function update_rating(id, type, rate, user_id) {
+        $.ajax({
+            url: '../GetData/update.php',
+
+            type: 'POST',
+
+            data: {
+                'id': id,
+                'type': type,
+                'rate': rate,
+                'user_id': user_id,
+            },
+            success: function (data) {
+
+                myJSON = JSON.parse(data);
+                console.log(myJSON);
+            },
+            error: function () {
+                alert("ajax error");
+            }
+        });
+    };
+
+    var ratedIndex=-1;
+
+    resetColors();
+    if (localStorage.getItem('ratedIndex') != null) {
+        setStars(parseInt(localStorage.getItem('ratedIndex')));
+    };
+
+    $(document).on('click', '.fa-star', function () {
+        console.log("hello");
+
+        //update_rating(5,"type",rate,23);
+        load_rating(5, 'type');
+        // localStorage.setItem('ratedIndex', ratedIndex);
+        //saveToDatabase();
+    });
+
+
+    $(document).on('mouseover', '.fa-star', function () {
+        resetColors();
+        var currentIndex = parseInt($(this).data('index'));
+        setStars(currentIndex);
+    });
+
+    $(document).on('mouseleave', '.fa-star', function () {
+        resetColors();
+        if (ratedIndex != -1) {
+            setStars(ratedIndex);
+        }
+    });
+
+
+
+    function setStars(max) {
+        for (var i = 0; i <= max; i++) {
+            $('.fa-star:eq(' + i + ')').css('color', 'orange')
+        }
+    };
+
+    function resetColors() {
+        $('.fa-star').css('color', 'black');
+    };
+
+
 
 };
 
@@ -469,6 +694,8 @@ function checkWithinCircle(desArray, jsonData, radius) {
 
     }
     return filteredData;
+
+
 };
 
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {

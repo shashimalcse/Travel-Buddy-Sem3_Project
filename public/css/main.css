@@ -66,90 +66,33 @@
 .line-break {
     width: 100%;
 }
-/* .rslides {
-    position: relative;
-    list-style: none;
-    overflow: hidden;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    }
-  
-  .rslides li {
-    -webkit-backface-visibility: hidden;
-    position: absolute;
-    display: none;
-    width: 100%;
-    left: 0;
-    top: 0;
-    }
-  
-  .rslides li:first-child {
-    position: relative;
-    display: block;
-    float: left;
-    }
-  
-  .rslides img {
-    display: block;
-    height: auto;
-    float: left;
-    width: 300px;
-    height: 250px;
-    border: 0;
-    }
-.rslides_nav.rslides1_nav.prev{
-} */
 
-#slides
-     {
-      display: none;
-      margin-bottom:50px;
-    }
-    .slidesjs-navigation {
-        margin-top:3px;
-      }
+.fotorama{
+  border-top: 1px solid #d4d4d4;
+  border-bottom: 1px solid #d4d4d4;
+  padding-top: 10px;
+}
+.img-holder{
   
-      .slidesjs-previous {
-        margin-right: 5px;
-        float: left;
-      }
+  padding: 2px;
+  background-color: #fff;  
+  padding-bottom: 10px;
+  padding-top: 10px;
+  border-style: solid;
+  border-radius: 4px;
+  margin-bottom: 7px;
+  border-width: 3px;
+  border-color: #d2d4d4;
   
-      .slidesjs-next {
-        margin-right: 5px;
-        float: left;
-      }
-  
-      .slidesjs-pagination {
-        margin: 6px 0 0;
-        float: right;
-        list-style: none;
-      }
-  
-      .slidesjs-pagination li {
-        float: left;
-        margin: 0 1px;
-      }
-  
-      .slidesjs-pagination li a {
-        display: block;
-        width: 13px;
-        height: 0;
-        padding-top: 13px;
-        background-image: url(img/pagination.png);
-        background-position: 0 0;
-        float: left;
-        overflow: hidden;
-      }
-  
-      .slidesjs-pagination li a.active,
-      .slidesjs-pagination li a:hover.active {
-        background-position: 0 -13px
-      }
-  
-      .slidesjs-pagination li a:hover {
-        background-position: 0 -26px
-      }
+}
+pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
   
       a:link,
       a:visited {

@@ -14,11 +14,23 @@
     <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
     <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
 
-    <link rel="stylesheet" type="text/css" href="/php-mvc-master/public/css/dialog.css" />
+    {# <link rel="stylesheet" type="text/css" href="/php-mvc-master/public/css/dialog.css" /> #}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+        <!-- fotorama -->
+        <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+    
+        <!-- sidebar -->
+        <link rel="stylesheet" href="/php-mvc-master/public/css/L.Control.Sidebar.css">
+        <script src="/php-mvc-master/public/js/L.Control.Sidebar.js"></script>
 
+ <!-- icons -->
+    <!-- <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+           
 
 {% endblock %}
 
@@ -28,8 +40,13 @@
             
     </div>
     
-    
-    <script type="text/javascript" src="jquery.dialog.js"></script>
+    <div id="sidebar-right">
+        <div id="sidebar-right-content">
+           
+        </div>
+        
+    </div>
+    {# <script type="text/javascript" src="jquery.dialog.js"></script> #}
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
