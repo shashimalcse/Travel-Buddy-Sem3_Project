@@ -39,4 +39,27 @@ class Profile extends Authenticated{
         }
     }
 
+    public function photoAction(){
+
+        View::renderTemplate('Profile/editpp.html',['user' => $this->user]);
+
+    }
+
+    public function addPhotoAction(){
+        $user_id = $_SESSION['user_id'];
+        $image=$_FILES['userfile'];
+        echo var_dump($image);
+        $directoryName = '../Resource/Profile/' . $user_id . '/';
+        if(!file_exists($directoryName)){
+            mkdir($directoryName, 0755, true);
+        }
+        
+        move_uploaded_file($image['tmp_name'],$directoryName.$user_id.".png");
+        parent::redirect('/php-mvc-master/public/profile/show');
+
+
+
+
+    }
+
 }

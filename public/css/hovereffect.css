@@ -2,7 +2,7 @@
   .box {
     position:relative;
     vertical-align: middle;
-    color: #000000;
+    color: #ff7300;
     display: inline-block;
     height: 60px;
     line-height: 60px;
@@ -38,7 +38,7 @@
   .boxx {
     position:relative;
     vertical-align: middle;
-    color: #000000;
+    color: #ff7300;
     display: inline-block;
     height: 60px;
     line-height: 60px;

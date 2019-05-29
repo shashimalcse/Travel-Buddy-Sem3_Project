@@ -1,12 +1,74 @@
 {% extends "base.html" %}
 
 {% block title %}Home{% endblock %}
+{% block footer %}
+<link rel="stylesheet" href="/php-mvc-master/public/css/mapbutton.css" />
+
+<style media="screen">
+    body {
+        background-color: #222222;
+    }
+
+    h1 {
+        font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+        font-size: 24px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 700;
+        line-height: 26.4px;
+    }
+
+    h3 {
+        font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 700;
+        line-height: 15.4px;
+    }
+
+    p {
+        font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 20px;
+    }
+
+    blockquote {
+        font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+        font-size: 21px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 30px;
+    }
+
+    pre {
+        font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+        font-size: 13px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 18.5714px;
+    }
+</style>
+{% endblock %}
 
 {% block body %}
 
-    <h1>Requset password reset</h1>
 
-    <p>Please check your email.</p>
+
+<div class="details" style="color:#ffffff; position: absolute; top: 200px; left: 100px;">
+    <h1 style="text-align:center">Requset Password Reset</h1>
+    <h1>Please check your email.</h1>
+</div>
+
+
+<div class="image">
+    <img src="/php-mvc-master/public/resource/logo1.png" style="position:absolute; margin-left:700px; width:800px">
+</div>
 
 
 

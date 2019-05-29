@@ -6,18 +6,94 @@
 
 <link rel="stylesheet" href="/php-mvc-master/public/css/formstyles.css" />
 <link rel="stylesheet" href="/php-mvc-master/public/css/hovereffect.css" />
-<script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"
+    integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH"
+    crossorigin="anonymous"></script>
+<style>
+        .frame-square, .frame-round {
+            background: #222222;
+            border: 1px solid #000;
+           
+            vertical-align: top;
+            padding: 10px;
+            width: 130px;
+            height: 130px;
+            ;
+          }
+          
+          .frame-round {
+            border-radius: 50%;
+            overflow: hidden;
+          }
+          .frame-round .crop {
+            border-radius: 50%;
+          }
+          
+          .crop {
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+          }
+          .crop img {
+            display: block;
+            min-width: 100%;
+            min-height: 100%;
+            margin: auto;
+            position: absolute;
+            top: -100%;
+            right: -100%;
+            bottom: -100%;
+            left: -100%;
+          }
+          
+          .retina .crop img {
+            transform: scale(0.5, 0.5);
+          }
+          
+          small {
+            display: block;
+            font-weight: normal;
+            opacity: .8;
+          }
+          
+         
+          hr {
+            background: transparent;
+            border: 0;
+            border-top: 2px solid #000;
+            margin: .8em 0;
+          }
+          
+        
+</style>
+<script>
 
+    function standby() {
+        document.getElementById('foo').src = '/php-mvc-master/public/resource/user2.png'
+    }
+</script>
 
 {% endblock %}
 
 {% block body %}
 
-    
-    <div class="wrapper">
 
-            <h1 style="text-align: center;"><i class="fas fa-user"></i> Profile</h1>
-            
+<div class="wrapper">
+
+    <h1 style="text-align: center;"><i class="fas fa-user"></i> Profile</h1>
+
+    <div class="frame-round" style="position:relative ;   margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;">
+            <div class="crop">
+                      <img src="/php-mvc-master/Resource/Profile/{{ user.id }}/{{ user.id }}.png" onerror="standby()" title="tall image">
+                </div>
+          </div>
+
+   
+
     <dl>
         <dt>Username</dt>
         <dd>{{ user.name }}</dd>
@@ -29,25 +105,25 @@
 </div>
 
 <div align="center">
-    <a href="/php-mvc-master/public/imformation/choose" >
+    <a href="/php-mvc-master/public/imformation/choose">
         <div class='boxx foo'>
-          ADD BUSINESS
+            ADD BUSINESS
         </div>
-      </a>
-      <a href="/php-mvc-master/public/imformation/edit-menu" >
+    </a>
+    <a href="/php-mvc-master/public/imformation/edit-menu">
         <div class='boxx foo'>
-          EDIT BUSINESS
+            EDIT BUSINESS
         </div>
-      </a>
-      <a href="/php-mvc-master/public/profile/edit" >
+    </a>
+    <a href="/php-mvc-master/public/profile/edit">
         <div class='boxx foo'>
-          EDIT PROFILE
+            EDIT PROFILE
         </div>
-      </a>   
-</div>  
+    </a>
+</div>
 
 
 
-    
+
 
 {% endblock %}

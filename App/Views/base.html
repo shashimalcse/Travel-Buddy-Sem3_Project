@@ -24,70 +24,71 @@
 </head>
 
 <body class="d-flex flex-column">
-  
-    <nav class="navbar fixed-top navbar-expand-md navbar-dark navbar-custom p-0" style="z-index:9999">
-      <!-- Brand -->
-      <a class="navbar-brand" href="#"><img src="/php-mvc-master/public/resource/logo.jpg" style="width:150px;"></a>
 
-      <!-- Links -->
-      <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-              <a class="nav-link" href="/php-mvc-master/public/places/show">
-                <i class="fas fa-globe-africa"></i>
-                Places</a>
-    
-            </li>
+  <nav class="navbar fixed-top navbar-expand-md navbar-dark navbar-custom p-0" style="z-index:9999">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#"><img src="/php-mvc-master/public/resource/logo.jpg" style="width:150px;"></a>
 
-        {% if current_user %}
-        <li class="nav-item">
-          <a class="nav-link" href="/php-mvc-master/public/mapquest/load">
-            <i class="fas fa-map-marked-alt"></i>
-            Map</a>
+    <!-- Links -->
+    <ul class="navbar-nav ml-auto">
 
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/php-mvc-master/public/profile/show">
-            <i class="fas fa-user"></i>
-            {{ current_user.name }}</a>
+      <li class="nav-item">
+        <a class="nav-link" href="/php-mvc-master/public/Places/show">
+          <i class="fas fa-globe-africa"></i>
+          Places</a>
 
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/php-mvc-master/public/logout">
-            <i class="fas fa-sign-out-alt"></i>
-            Logout</a>
+      </li>
 
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="/php-mvc-master/public/">
-            <i class="fas fa-home"></i>
-            Home</a>
+      {% if current_user %}
+      <li class="nav-item">
+        <a class="nav-link" href="/php-mvc-master/public/mapquest/load">
+          <i class="fas fa-map-marked-alt"></i>
+          Map</a>
 
-        </li>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/php-mvc-master/public/profile/show">
+          <i class="fas fa-user"></i>
+          {{ current_user.name }}</a>
 
-        <li class="nav-item">
-          <a class="nav-link" href="/php-mvc-master/public/signup/new">
-            <i class="fas fa-user-plus"></i>
-            Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/php-mvc-master/public/login">
-            <i class="fas fa-sign-in-alt"></i>
-            Login</a>
-        </li>
-        {% endif %}
-      </ul>
-    </nav>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/php-mvc-master/public/logout">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout</a>
 
-  
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="/php-mvc-master/public/">
+          <i class="fas fa-home"></i>
+          Home</a>
+
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/php-mvc-master/public/signup/new">
+          <i class="fas fa-user-plus"></i>
+          Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/php-mvc-master/public/login">
+          <i class="fas fa-sign-in-alt"></i>
+          Login</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+
+
   {% for massage in flash_messages %}
   <div class="alert alert-{{ massage.type }}">
     {{ massage.body }}
   </div>
   {% endfor %}
   <div id="page-content">
-  {% block body %}
-  {% endblock %}
+    {% block body %}
+    {% endblock %}
   </div>
   <script crossorigin="anonymous" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -95,11 +96,11 @@
   {% block footer %}
   {% endblock %}
   <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
-      <div class="container text-center">
-        <small>Copyright &copy; Your Website</small>
-      </div>
-    </footer>
-</div>
+    <div class="container text-center">
+      <small>Copyright &copy; Your Website</small>
+    </div>
+  </footer>
+  </div>
 </body>
 
 

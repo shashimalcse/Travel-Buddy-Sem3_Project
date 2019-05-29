@@ -7,6 +7,7 @@
 <script src="/php-mvc-master/public/js/hideShowPAssword.min.js"></script>
 <script src="/php-mvc-master/public/js/app.js"></script>
 <link rel="stylesheet" href="/php-mvc-master/public/css/formstyles.css" />
+<script src="/php-mvc-master/public/js/imagepreview.js"></script>
 <script>
 
 $(document).ready(function(){
@@ -67,26 +68,15 @@ $(document).ready(function(){
     {% endif %}
     <div class="wrapper">
 
-            <h1 style="text-align: center;">Edit Profile</h1>
-            <h1 style="text-align: center;"><a href="/php-mvc-master/public/profile/photo"><img src="/php-mvc-master/public/resource/user.png" style="width:100px;"></i></a></h1>
-
-    <form method="post" id="formProfile" action="/php-mvc-master/public/profile/update">
-
-        <div class="form-group">
-            <label for="inputName">Name</label>
-            <input id="inputName" name="name" placeholder="Name"  value="{{ user.name}}" required class="form-control" />
-        </div>
+            <h1 style="text-align: center;">Add Profile Photo</h1>
+            
+    <form method="post" enctype="multipart/form-data" action="/php-mvc-master/public/profile/add-photo">
 
         <div class="form-group">
-            <label for="inputEmail">Email</label>
-            <input id="inputEmail" name="email" placeholder="Email" value="{{ user.email}}" required type="email" class="form-control" />
-        </div>
-
-        <div class="form-group">
-            <label for="inputPassword">Password</label>
-            <input type="password" id="inputPassword" name="password" placeholder="Password"  aria-describedby="helpBlock" class="form-control" />
-            <span id="helpBlock">Leave blank to keep current password.</span>
-        </div>
+                <label for="image">Upload Images : </label>
+                <input type="file" name="userfile" id="image" accept="image/*" multiple="" required>
+            </div>
+            <div id="image-holder" class="image-holder" style="display: none;"></div>
         
         <button type="submit" class="btn btn-primary">Save</button>
         

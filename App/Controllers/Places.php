@@ -26,7 +26,7 @@ class Places extends \Core\Controller{
 
             Flash::addMessage('Login First');
 
-            redirect('/php-mvc-master/public/login');
+            parent::redirect('/php-mvc-master/public/login');
         }
 
     }

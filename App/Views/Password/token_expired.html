@@ -1,11 +1,77 @@
 {% extends "base.html" %}
 
 {% block title %}Forgot password{% endblock %}
+{% block footer %}
+<link rel="stylesheet" href="/php-mvc-master/public/css/mapbutton.css" />
+
+<style media="screen">
+    body {
+        background-color: #222222;
+    }
+
+    h1 {
+        font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+        font-size: 24px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 700;
+        line-height: 26.4px;
+    }
+
+    h3 {
+        font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 700;
+        line-height: 15.4px;
+    }
+
+    p {
+        font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 20px;
+    }
+
+    blockquote {
+        font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+        font-size: 21px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 30px;
+    }
+
+    pre {
+        font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+        font-size: 13px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 18.5714px;
+    }
+</style>
+{% endblock %}
 
 {% block body %}
 
-    <h1>Request password reset</h1>
-
-    <p>PAssword reset link invalid or expired , please click <a href="/password/reset"> to request another one.</a>a></p>
+    <div class="details" style="color:#ffffff; position: absolute; top: 200px; left: 100px;">
+            <h1 style="text-align:center">Request Password Reset</h1>
+            <h1>Password reset link invalid or expired. Plase request another one.</h1>
+          </div>
+          <div style="  position: absolute;
+      bottom: 300px;
+      left: 250px;">
+       <form action="/php-mvc-master/password/reset" method="get">
+           <button type="submit">Reset</button>
+       </form>
+      </div>
+      
+          <div class="image">
+            <img src="/php-mvc-master/public/resource/logo1.png" style="position:absolute; margin-left:700px; width:800px">
+          </div>
 
 {% endblock %}

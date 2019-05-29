@@ -1,6 +1,7 @@
 body{
     margin-top: 100px;
-    background-image: url("../resource/background.jpg");
+    background-color: #222222;
+    background-image: url("../resource/background2.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
  background-position: center;
