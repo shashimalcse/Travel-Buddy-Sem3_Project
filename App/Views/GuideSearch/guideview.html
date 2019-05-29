@@ -14,7 +14,7 @@
 
 
                 <select class="custom-select" id="vehicaltype" name="dayfilter" required>
-                    <option selected value="All">All</option>
+                    <option value="All">All</option>
                     <option value="1 Day">1 Day</option>
                     <option value="2 Days">2 Days</option>
                     <option value="3 Days">3 Days</option>
@@ -37,7 +37,6 @@
         {% if day=='All'%}
         {% for guide in data  %}
 
-                    {% if guide.days=='All' %}
                         <div class="col-lg-4 col-sm-6 mb-4">
                             <div class="card h-100">
                                 <div class="card-body">
@@ -57,14 +56,13 @@
                             </div>
                         </div>
 
-                    {% endif %}
             {% endfor %}
 
             {% endif %}
             {% if day=='1 Day'%}
             {% for guide in data  %}
     
-                        {% if guide.days=='1 Day' %}
+                        
                             <div class="col-lg-4 col-sm-6 mb-4">
                                 <div class="card h-100">
                                     <div class="card-body">
@@ -84,7 +82,7 @@
                                 </div>
                             </div>
     
-                        {% endif %}
+                        
                 {% endfor %}
     
                 {% endif %}    
@@ -92,7 +90,7 @@
                 {% if day=='2 Days'%}
                 {% for guide in data  %}
         
-                            {% if (guide.days=='1 Day') or (guide.days=='2 Days') %}
+                            {% if (guide.days=='3 Days') or (guide.days=='2 Days') %}
                                 <div class="col-lg-4 col-sm-6 mb-4">
                                     <div class="card h-100">
                                         <div class="card-body">
@@ -120,7 +118,7 @@
                     {% if day=='3 Days'%}
                     {% for guide in data  %}
             
-                                {% if (guide.days=='1 Day') or (guide.days=='2 Days') or (guide.days=='3 Days') %}
+                                {% if (guide.days=='More Days') or (guide.days=='3 Days') %}
                                     <div class="col-lg-4 col-sm-6 mb-4">
                                         <div class="card h-100">
                                             <div class="card-body">
@@ -148,7 +146,7 @@
                         {% if day=='More Days'%}
                         {% for guide in data  %}
                 
-                                    
+                                    {% if guide.days=='More Days'%}
                                         <div class="col-lg-4 col-sm-6 mb-4">
                                             <div class="card h-100">
                                                 <div class="card-body">
@@ -167,7 +165,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                
+                                    {% endif %}
                                     
                             {% endfor %}
                 
