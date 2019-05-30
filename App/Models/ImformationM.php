@@ -46,7 +46,12 @@ class ImformationM extends \Core\Model{
 
         $vehicaltype = $data['vehicaltype'];
         $vehicalmodel = $data['vehicalmodel'];
-        $ac=$data['ac'];
+        if(isset($_POST['ac'])){
+            $ac=$data['ac'];
+        }
+        else{
+            $ac='No';
+        }
         $cost=$data['cost'];
         $detail = $data['detail'];
         $photoArray=$files['userfile'];

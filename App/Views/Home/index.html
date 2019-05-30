@@ -39,6 +39,37 @@
 
 
 {% if current_user %}
+<div class="circle-multiple" style="float:right;">
+
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle">
+        <img src="/php-mvc-master/public/resource/logo1.png" style="width:700px;  margin-left: -80px;
+                    margin-top: 10px;">
+    </div>
+</div>
+
+<div class="center">
+    <p id="text1">_Hi! LET'S SEARCH_</p>
+    <p id="text2">HANDLE YOUR BUSINESS</p>
+</div>
+<div style="  position: absolute;
+bottom: 200px;
+right: 550px;">
+    <form action="/php-mvc-master/public/Mapquest/load" method="get">
+        <button type="submit">Map</button>
+    </form>
+</div>
+<div style="  position: absolute;
+bottom: 200px;
+right: 300px;">
+    <form action="/php-mvc-master/public/places/show" method="get">
+        <button type="submit">Places</button>
+    </form>
+</div>
 
 
 {% else %}
